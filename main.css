@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Lakki+Reddy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Lakki+Reddy&display=swap');
+
+html {
+    background-color: #0B5A89;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+#top {
+    display: flex;
+
+}
+
+#top h1 {
+    color: #EEBA35;
+    font-size: 50px;
+    width: 80%;
+    text-align: center;
+    font-family: "Lakki Reddy", serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+#top img {
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 3px #F1F1F1;
+    border-radius: 5px;
+    font-family: "Aladin", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#game-container {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.matched {
+    background-color: #53cb57;
+    color: #f1f1f1;
+}
+
+
+.startMain {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#score {
+    background-color: #06314a;
+    text-align: center;
+    font-size: 24px;
+    color: #F1F1F1;
+    padding: 20px;
+    box-shadow: 5px 5px 0px -1px rgba(6,49,74,0.84);
+}
+
+#timer, p {
+    text-align: center;
+    color: #fff;
+}
+
+p {
+    font-size: 24px;
+}
+
+#timer{
+    font-weight: bold;
+    font-size: 45px;
+}
+
+#startbtn, #restartbtn{
+    padding: 10px 20px;
+    margin: 3px;
+    width: 100px;
+    background-color: white;
+    color: #0B5A89;
+    font-size: 24px;
+    border: none;
+    border-radius: 5px;
+    font-family: "Aladin", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#startbtn:hover, #restartbtn:hover {
+    background-color: #0B5A89;
+    color: #F1F1F1;
+    border: solid 1px #F1F1F1;
+}
