@@ -14,6 +14,8 @@ const restartbtn = document.getElementById('restartbtn');
 const gameContainer = document.getElementById('game-container');
 const scoreElement = document.getElementById('score');
 const timerElement = document.getElementById('timer');
+const messageElement = document.getElementById('message');
+const timeContainer = document.getElementById('time-container');
 
 function generateCards() {
     for (const imgSrc of cards) {
@@ -61,12 +63,16 @@ function checkMatch() {
         card1.classList.add('matched');
         card2.classList.add('matched');
         score += 2;
-        scoreElement.innerHTML = `Score:<br/> ${score}`;
+        scoreElement.textContent = `Score: ${score}`;
 
         // check if all cards are matched
         if (document.querySelectorAll('.card.matched').length === cards.length) {
             clearInterval(gameInterval);
-            alert('Congratulations! You matched all the cards!');
+            messageElement.textContent = 'Congratulations! You matched all the cards!';
+            messageElement.style.color = '#186a0d';
+            messageElement.style.visibility = 'visible';
+            restartbtn.style.visibility = 'hidden';
+            gameContainer.style.visibility = 'hidden';
             startbtn.disabled = false;
             restartbtn.disabled = true;
         }
@@ -78,39 +84,62 @@ function checkMatch() {
 }
 
 function startGame() {
-    resetGame(); // reset the game state without starting the timer
+    resetGame(false); // reset the game state without showing the message
     startGameTimer(); // start the timer
     startbtn.disabled = true;
     restartbtn.disabled = false;
+    messageElement.style.visibility = 'hidden'; // clear any previous messages
+    gameContainer.style.visibility = 'visible'; // show the game container
+    scoreElement.style.visibility = 'visible'; // show the score element
+    timeContainer.style.visibility = 'visible'; // show the time container
+    restartbtn.style.visibility = 'visible';
 }
 
 function startGameTimer() {
     clearInterval(gameInterval);
     gameInterval = setInterval(() => {
         timeLeft--;
-        timerElement.textContent = timeLeft;
+        timerElement.textContent = `${timeLeft}`;
         if (timeLeft === 0) {
             clearInterval(gameInterval);
-            alert('Game Over! Try again!');
+            messageElement.textContent = 'Game Over! Try again!';
+            messageElement.style.color = '#6a0d0d';
+            messageElement.style.visibility = 'visible';
+            restartbtn.style.visibility = 'hidden';
+            gameContainer.style.visibility = 'hidden';
             startbtn.disabled = false;
             restartbtn.disabled = true;
         }
     }, 1000);
 }
 
-function resetGame() {
+function resetGame(showMessage = true) {
     clearInterval(gameInterval); // clear any existing intervals
     timeLeft = 30; // reset timeLeft
     score = 0; // reset score to zero
-    scoreElement.innerHTML = `Score:<br/> ${score}`;
-    timerElement.textContent = timeLeft;
+    scoreElement.textContent = `Score: ${score}`;
+    timerElement.textContent = `${timeLeft}`;
     cards = shuffle(images.concat(images)); // shuffle cards
     selectedCards = [];
     gameContainer.innerHTML = ''; // clear previous cards
     generateCards(); // generate new set of cards
     gameContainer.addEventListener('click', handleCardClick);
-    startbtn.disabled = false; // enable start button
+    gameContainer.style.visibility = 'hidden'; // hide the game container initially
+    scoreElement.style.visibility = 'hidden'; // hide the score element initially
+    timeContainer.style.visibility = 'hidden'; // hide the time container initially
+    restartbtn.style.visibility = 'hidden';
+    startbtn.disabled = false; 
+    restartbtn.disabled = false;
+    
+    if (showMessage) {
+        messageElement.textContent = 'Game reset! Press Start to play again.';
+        messageElement.style.color = '#0B5A89';
+        messageElement.style.visibility = 'visible';
+    }
 }
 
 startbtn.addEventListener('click', startGame);
-restartbtn.addEventListener('click', resetGame);
+restartbtn.addEventListener('click', () => resetGame(true));
+
+// initial setup
+resetGame(false);

@@ -11,14 +11,15 @@
         <img src="./images/HPicon.png" alt="Harry Potter icon">
         <h1>Memory Game</h1>
     </div>
+    <div id="message">Press on Start button</div>
     <div class="container">
-        <div id="game-container">
-         <!-- Cards will be generated dynamically using JavaScript -->
+        <div id="game-container" class="hidden">
+            <!-- cards will be generated dynamically using JavaScript -->
         </div>
         <div class="startMain">
-            <p id="score">Score:<br/> 0</p>
-            <div>
-                <p>Time Left:</p>
+            <p id="score">Score: 0</p>
+            <div id="time-container">
+                <p id="time">Time left:</p>
                 <p id="timer">30</p>
             </div>
             <button id="startbtn">Start</button>
